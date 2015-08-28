@@ -34,8 +34,8 @@ using namespace glm;
 using namespace globjects;
 
 
-CubeScape::CubeScape(gloperate::ResourceManager & resourceManager, const std::string & relDataPath)
-: Painter("CubeScape", resourceManager, relDataPath)
+CubeScape::CubeScape(gloperate::ResourceManager & resourceManager, const std::map<std::string, std::string> & relDataPaths)
+: Painter("CubeScape", resourceManager, relDataPaths)
 , m_animation{true}
 , m_numCubes{25}
 , a_vertex{-1}
@@ -92,9 +92,9 @@ void CubeScape::onInitialize()
 
     m_program = new globjects::Program;
     m_program->attach(
-        globjects::Shader::fromFile(GL_VERTEX_SHADER,   m_relDataPath + "data/cubescape/cubescape.vert"),
-        globjects::Shader::fromFile(GL_GEOMETRY_SHADER, m_relDataPath + "data/cubescape/cubescape.geom"),
-        globjects::Shader::fromFile(GL_FRAGMENT_SHADER, m_relDataPath + "data/cubescape/cubescape.frag")
+        globjects::Shader::fromFile(GL_VERTEX_SHADER,   m_relDataPaths[""] + "data/cubescape/cubescape.vert"),
+        globjects::Shader::fromFile(GL_GEOMETRY_SHADER, m_relDataPaths[""] + "data/cubescape/cubescape.geom"),
+        globjects::Shader::fromFile(GL_FRAGMENT_SHADER, m_relDataPaths[""] + "data/cubescape/cubescape.frag")
     );
 
     // create textures
@@ -112,7 +112,7 @@ void CubeScape::onInitialize()
     }
 
     {
-        gloperate::RawFile terrain(m_relDataPath + "data/cubescape/terrain.512.512.r.ub.raw");
+        gloperate::RawFile terrain(m_relDataPaths[""] + "data/cubescape/terrain.512.512.r.ub.raw");
         if (!terrain.isValid())
             std::cout << "warning: loading texture from " << terrain.filePath() << " failed.";
 
@@ -120,7 +120,7 @@ void CubeScape::onInitialize()
     }
 
     {
-        gloperate::RawFile patches(m_relDataPath + "data/cubescape/patches.64.16.rgb.ub.raw");
+        gloperate::RawFile patches(m_relDataPaths[""] + "data/cubescape/patches.64.16.rgb.ub.raw");
         if (!patches.isValid())
             std::cout << "warning: loading texture from " << patches.filePath() << " failed.";
 

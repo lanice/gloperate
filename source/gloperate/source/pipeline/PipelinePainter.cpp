@@ -11,9 +11,9 @@ namespace gloperate
 PipelinePainter::PipelinePainter(
       const std::string & name
     , gloperate::ResourceManager & resourceManager
-    , const std::string & relDataPath
+    , const std::map<std::string, std::string> & relDataPaths
     , AbstractPipeline & pipeline)
-:   Painter(name, resourceManager, relDataPath)
+:   Painter(name, resourceManager, relDataPaths)
 ,   m_pipeline(pipeline)
 {
 }

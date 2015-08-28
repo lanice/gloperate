@@ -15,8 +15,8 @@ using namespace globjects;
 using namespace gl;
 
 
-ScreenAligned::ScreenAligned(ResourceManager & resourceManager, const std::string & relDataPath)
-: Painter("ScreenAligned", resourceManager, relDataPath)
+ScreenAligned::ScreenAligned(ResourceManager & resourceManager, const std::map<std::string, std::string> & relDataPaths)
+: Painter("ScreenAligned", resourceManager, relDataPaths)
 {
     // Setup painter
     m_targetFramebufferCapability = addCapability(new gloperate::TargetFramebufferCapability());

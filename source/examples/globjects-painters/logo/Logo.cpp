@@ -60,11 +60,11 @@ void main()
 )";
 
 
-Logo::Logo(ResourceManager & resourceManager, const std::string & relDataPath)
-: Painter("Logo", resourceManager, relDataPath)
+Logo::Logo(ResourceManager & resourceManager, const std::map<std::string, std::string> & relDataPaths)
+: Painter("Logo", resourceManager, relDataPaths)
 , m_animation(true)
 , m_background(0, 0, 0, 255)
-, m_textureFilename(m_relDataPath + "data/logo/gloperate-logo.png")
+, m_textureFilename(m_relDataPaths[""] + "data/logo/gloperate-logo.png")
 , m_angle(0.0f)
 {
     // Setup painter

@@ -51,12 +51,32 @@ const char * Plugin::version() const
 
 const char * Plugin::relDataPath() const
 {
-    return m_relDataPath.c_str();
+    return relDataPath("");
+}
+
+const char * Plugin::relDataPath(const char * identifier) const
+{
+    return m_relDataPath.at(identifier).c_str();
+}
+
+bool Plugin::hasRelDataPath() const
+{
+    return hasRelDataPath("");
+}
+
+bool Plugin::hasRelDataPath(const char * identifier) const
+{
+    return m_relDataPath.count(identifier) > 0;
 }
 
 void Plugin::setRelDataPath(const char * path)
 {
-    m_relDataPath = path;
+    setRelDataPath("", path);
+}
+
+void Plugin::setRelDataPath(const char * identifier, const char * path)
+{
+    m_relDataPath[identifier] = path;
 }
 
 

@@ -29,7 +29,7 @@ class AbstractStorer;
 *  @brief
 *    Class to help loading/accessing resources (textures, ...)
 */
-class ResourceManager 
+class GLOPERATE_API ResourceManager
 {
 public:
     /**

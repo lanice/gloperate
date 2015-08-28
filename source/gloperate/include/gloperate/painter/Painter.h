@@ -66,7 +66,7 @@ public:
     *
     *  @see Plugin::relDataPath
     */
-    Painter(const std::string & name, ResourceManager & resourceManager, const std::string & relDataPath);
+    Painter(const std::string & name, ResourceManager & resourceManager, const std::map<std::string, std::string> & relDataPaths);
 
     /**
     *  @brief
@@ -166,12 +166,12 @@ protected:
 
 
 protected:
-    ResourceManager & m_resourceManager; ///< Resource manager, e.g., to load and save textures
-    std::string       m_relDataPath;     ///< Path to data directory (usually "", unless loaded from plugins)
+    ResourceManager &                  m_resourceManager; ///< Resource manager, e.g., to load and save textures
+    std::map<std::string, std::string> m_relDataPaths;    ///< Paths to data directories (usually "", unless loaded from plugins)
 
-    std::vector<AbstractCapability *> m_capabilities; ///< List of supported capabilities
+    std::vector<AbstractCapability *>  m_capabilities;    ///< List of supported capabilities
 
-    glm::vec3 m_backgroundColor;    ///< Background color (can be used by derived classes)
+    glm::vec3                          m_backgroundColor; ///< Background color (can be used by derived classes)
 };
 
 

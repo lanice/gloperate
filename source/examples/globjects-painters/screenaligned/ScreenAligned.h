@@ -19,7 +19,7 @@ namespace gloperate
 class ScreenAligned : public gloperate::Painter
 {
 public:
-    ScreenAligned(gloperate::ResourceManager & resourceManager, const std::string & relDataPath);
+    ScreenAligned(gloperate::ResourceManager & resourceManager, const std::map<std::string, std::string> & relDataPaths);
     virtual ~ScreenAligned();
 
 

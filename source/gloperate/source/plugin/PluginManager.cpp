@@ -228,7 +228,7 @@ bool PluginManager::loadLibrary(const std::string & filePath, bool reload)
     std::string dirPath = DirectoryIterator::truncate(iozeug::getPath(filePath));
 
     // Initialize plugin info
-    std::string relDataPath = "";
+    auto relDataPaths = std::map<std::string, std::string>();
 
     // Load extra information from "PluginInfo.json" if present
     Variant pluginInfo;
@@ -236,8 +236,18 @@ bool PluginManager::loadLibrary(const std::string & filePath, bool reload)
     if (json.load(pluginInfo, dirPath + g_sep + "PluginInfo.json")) {
         // Read plugin info
         VariantMap & map = *(pluginInfo.asMap());
-        if (map.count("relDataPath") > 0) {
-            relDataPath = dirPath + g_sep + DirectoryIterator::truncate(map["relDataPath"].value<std::string>()) + g_sep;
+
+        if (map.count("relDataPath") > 0)
+        {
+            relDataPaths[""] = dirPath + g_sep + DirectoryIterator::truncate(map["relDataPath"].value<std::string>()) + g_sep;
+        }
+
+        if (map.count("relDataPaths") > 0)
+        {
+            for (const auto & pair : *map["relDataPath"].asMap())
+            {
+                relDataPaths[pair.first] = dirPath + g_sep + DirectoryIterator::truncate(pair.second.value<std::string>()) + g_sep;
+            }
         }
     }
 
@@ -279,8 +289,9 @@ bool PluginManager::loadLibrary(const std::string & filePath, bool reload)
             continue;
 
         // Set relative data path for plugin (if known)
-        if (!relDataPath.empty()) {
-            plugin->setRelDataPath(relDataPath.c_str());
+        for (const auto & pair : relDataPaths)
+        {
+            plugin->setRelDataPath(pair.first.c_str(), pair.second.c_str());
         }
 
         // Add plugin to list

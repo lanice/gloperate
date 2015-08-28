@@ -121,7 +121,7 @@ public:
     *    To set this information, create a file named PluginInfo.json in
     *    the directory that contains your plugin libraries and define where
     *    data is found relative to that directory, e.g.:
-    *      { "relDataPath": { "gloperate": "../data" } }
+    *      { "relDataPaths": { "gloperate": "../data" } }
     */
     const char * relDataPath(const char * identifier) const;
 

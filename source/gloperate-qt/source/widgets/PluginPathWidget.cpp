@@ -98,5 +98,17 @@ void PluginPathWidget::dropEvent(QDropEvent * event)
     event->acceptProposedAction();
 }
 
+void PluginPathWidget::keyReleaseEvent(QKeyEvent * event)
+{
+    if (event->key() == Qt::Key_Delete)
+    {
+        for (auto & item : m_listWidget->selectedItems())
+        {
+            m_pluginManager->removeSearchPath(item->text().toStdString());
+            item->setHidden(true);
+        }
+    }
+}
+
 
 } // namespace gloperate_qt

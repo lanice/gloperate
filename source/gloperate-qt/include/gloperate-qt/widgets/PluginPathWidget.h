@@ -37,6 +37,7 @@ protected:
     void addPath(const QString & path);
     void dragEnterEvent(QDragEnterEvent * event) override;
     void dropEvent(QDropEvent * event) override;
+    void keyReleaseEvent(QKeyEvent * event) override;
 
 
 
